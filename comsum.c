@@ -22,6 +22,12 @@ int a = 0;
 int main( int argc , char *argv[] )
 {
 
+	if( argc < 3 )
+	{
+		puts("Usage: comsum <checksum1> <checksum2>");
+		return 0;
+	}
+
 	while( argv[1][a] != 0 && argv[2][a] != 0 )
 	{
 		a++;
