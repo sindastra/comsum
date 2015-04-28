@@ -38,9 +38,9 @@ int main( int argc , char *argv[] )
 	printf( "%s\n%s\n" , argv[1] , argv[2] );
 
 	if( sc )
-		printf("The checksums match!\n");
+		puts("The checksums match!");
 	else
-		printf("The checksums do not match!\n");
+		puts("The checksums do not match!");
 
 	return 0;
 	
