@@ -17,7 +17,7 @@
 #include <stdio.h>
 
 int sc = 1;
-int a = 0;
+int i = 0;
 
 int main( int argc , char *argv[] )
 {
@@ -28,10 +28,10 @@ int main( int argc , char *argv[] )
 		return 0;
 	}
 
-	while( argv[1][a] != 0 && argv[2][a] != 0 )
+	while( argv[1][i] != 0 && argv[2][i] != 0 )
 	{
-		a++;
-		if( argv[1][a] != argv[2][a] )
+		i++;
+		if( argv[1][i] != argv[2][i] )
 			sc = 0;
 	}
 
