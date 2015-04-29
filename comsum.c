@@ -16,8 +16,8 @@
 
 #include <stdio.h>
 
-int sc = 1;
-int i = 0;
+int i, matches = 1;
+char *checksum1, *checksum2;
 
 int main( int argc , char *argv[] )
 {
@@ -28,16 +28,19 @@ int main( int argc , char *argv[] )
 		return 0;
 	}
 
-	while( argv[1][i] != 0 && argv[2][i] != 0 )
+	checksum1 = argv[1];
+	checksum2 = argv[2];
+
+	while( checksum1[i] != 0 && checksum2[i] != 0 )
 	{
 		i++;
-		if( argv[1][i] != argv[2][i] )
-			sc = 0;
+		if( checksum1[i] != checksum2[i] )
+			matches = 0;
 	}
 
-	printf( "%s\n%s\n" , argv[1] , argv[2] );
+	printf( "%s\n%s\n" , checksum1 , checksum2 );
 
-	if( sc )
+	if( matches )
 		puts("The checksums match!");
 	else
 		puts("The checksums do not match!");
