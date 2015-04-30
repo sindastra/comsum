@@ -38,7 +38,8 @@ int main( int argc , char *argv[] )
 			matches = 0;
 	}
 
-	printf( "%s\n%s\n" , checksum1 , checksum2 );
+	puts(checksum1);
+	puts(checksum2);
 
 	if( matches )
 		puts("The checksums match!");
