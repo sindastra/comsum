@@ -15,36 +15,72 @@
  */
 
 #include <stdio.h>
+#include <string.h>
 
-int i, matches = 1;
-char *checksum1, *checksum2;
+short showCode;
+short matches;
+short silent;
+char *checksum1;
+char *checksum2;
+
+void showHelp()
+{
+	puts("Usage: comsum [-cs] <checksum1> <checksum2>");
+	puts("\t-c\tDisplay a code instead of human readable output.");
+	puts("\t\t0 for match, 1 for mismatch.");
+	puts("\t-s\tDo not reflect checksums (kinda silent).");
+}
 
 int main( int argc , char *argv[] )
 {
 
 	if( argc < 3 )
 	{
-		puts("Usage: comsum <checksum1> <checksum2>");
+		showHelp();
 		return 0;
 	}
 
-	checksum1 = argv[1];
-	checksum2 = argv[2];
-
-	while( checksum1[i] != 0 && checksum2[i] != 0 )
+	if( argc == 4)
 	{
-		i++;
-		if( checksum1[i] != checksum2[i] )
-			matches = 0;
+		if( *(argv[1]+0) == '-' )
+		{
+			for(int i = 0;*(argv[1]+i) != 0;i++)
+			{
+				switch( *(argv[1]+i) )
+				{
+					case 'c':
+						showCode = 1;
+						break;
+					case 's':
+						silent = 1;
+						break;
+				}
+			}
+		}
 	}
 
-	puts(checksum1);
-	puts(checksum2);
+	checksum1 = argv[argc-2];
+	checksum2 = argv[argc-1];
+
+	if(!silent)
+	{
+		puts(checksum1);
+		puts(checksum2);
+	}
+	
+	if( strcmp(checksum1, checksum2) == 0 )
+		matches = 1;
 
 	if( matches )
-		puts("The checksums match!");
+		if(showCode)
+			puts("0");
+		else
+			puts("The checksums match!");
 	else
-		puts("The checksums do not match!");
+		if(showCode)
+			puts("1");
+		else
+			puts("The checksums do not match!");
 
 	return 0;
 	

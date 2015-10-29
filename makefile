@@ -1,4 +1,12 @@
+OUTPUT=comsum
+INSTALLDIR=/usr/local/bin
+CFLAGS=-std=c99
+
 all:
-	gcc comsum.c -o comsum
+	${CC} ${CFLAGS} comsum.c -o ${OUTPUT}
 install:
-	cp comsum /usr/local/bin
+	cp ${OUTPUT} ${INSTALLDIR}
+uninstall:
+	rm ${INSTALLDIR}/${OUTPUT}
+clean:
+	rm ${OUTPUT}
