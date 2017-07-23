@@ -1,12 +1,13 @@
-OUTPUT=comsum
-INSTALLDIR=/usr/local/bin
-CFLAGS=-std=c99
+PREFIX ?= /usr/local
+BINDIR ?= $(PREFIX)/bin
 
-all:
-	${CC} ${CFLAGS} comsum.c -o ${OUTPUT}
-install:
-	cp ${OUTPUT} ${INSTALLDIR}
-uninstall:
-	rm ${INSTALLDIR}/${OUTPUT}
+all: comsum
+
+install: comsum
+	install -m 755 comsum $(DESTDIR)$(BINDIR)/
+
 clean:
-	rm ${OUTPUT}
+	-if [ -f comsum ]; then rm comsum; fi
+
+comsum: comsum.c
+	$(CC) $(CFLAGS) comsum.c -o comsum
